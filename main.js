@@ -25,4 +25,4 @@ client.on("messageReactionAdd", (reaction, user) => {
 
 console.log(client.channels.cache);
 
-client.login("ODY1NjgyMTg2Nzc4OTY4MDc0.YPHjXA.gOCGt8gHEftt3YFJWLUphxrn4I0");
+client.login(process.env.TOKEN);
