@@ -9,20 +9,20 @@ client.on("ready", function () {
 
 // Répondre à un message
 client.on("message", function (message) {
-  let role = message.guild.roles.cache.find(r => r.name === "candidat");
-  if(message.channel.name === 'candidature'){
-    message.member.roles.add(role);
-  }
 })
 
 client.on("messageReactionAdd", (reaction, user) => {
-  let role = reaction.message.guild.roles.cache.find(r => r.name === "citoyen");
-  let member = reaction.message.guild.members.cache.get(user.id);
+  let role;
+  let member;
   if(reaction.message.channel.name === 'reglement' && reaction.emoji.id === '866302966805823508') {
+    role = reaction.message.guild.roles.cache.find(r => r.name === "citoyen");
+    member = reaction.message.guild.members.cache.get(user.id);
     member.roles.add(role)
+  } else if (reaction.message.channel.name === 'candidature' && reaction.emoji.id === '867066959971352596') {
+    role = reaction.message.guild.roles.cache.find(r => r.name === "candidat");
+    member = reaction.message.guild.members.cache.get(reaction.message.author.id);
+    member.roles.add(role);
   }
 })
-
-console.log(client.channels.cache);
 
 client.login(process.env.TOKEN);
